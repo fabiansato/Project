@@ -73,7 +73,7 @@ app.get('/categoria/:id', (req, res) => {
 
         if (results.length === 0) {
             res.status(413);
-            res.json({ mensaje: 'Categoria no encontrada'})
+            res.json({ mensaje: 'Categoria no encontrada' });
             return;
         }
     
@@ -83,26 +83,7 @@ app.get('/categoria/:id', (req, res) => {
 });
 
 app.delete('/categoria/:id', (req, res) => {
-    const searchParams = {
-        id: req.params.id
-    };
-
-    connection.query('SELECT * FROM `categorias` WHERE ?', [searchParams], (error, results) => {
-        if (error) {
-            res.status(413);
-            res.json({ mensaje: 'Error inesperado' });
-            return;
-        }
-
-        if (results.length === 0) {
-            res.status(413);
-            res.json({ mensaje: 'Categoria no encontrada'})
-            return;
-        }
-    
-        res.status(200);
-        res.json(results[0]);
-    });
+    // TODO
 });
 
 app.listen(process.env.PORT || 3000, () => {
