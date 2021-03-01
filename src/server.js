@@ -1,7 +1,10 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const mysql = require('mysql');
 
 const app = express();
+
+app.use(bodyParser.json());
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -12,17 +15,17 @@ const connection = mysql.createConnection({
 });
 
 app.post('/categoria', (req, res) => {
-    if (!req.query.nombre) {
+    if (!req.body.nombre) {
         res.status(413);
         res.json({ mensaje: 'Faltan datos' });
         return;
     }
 
-    const values = {
-        nombre: req.query.nombre
+    const setParams = {
+        nombre: req.body.nombre
     };
 
-    connection.query('INSERT INTO `categorias` SET ?', values, (error, results) => {
+    connection.query('INSERT INTO `categorias` SET ?', [setParams], (error, results) => {
         if (error) {
             res.status(413);
 
@@ -41,7 +44,7 @@ app.post('/categoria', (req, res) => {
         res.status(200);
         res.json({
             id: results.insertId,
-            nombre: req.query.nombre
+            ...setParams
         });
     });
 });
