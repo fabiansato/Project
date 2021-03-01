@@ -1,0 +1,6 @@
+PUT http://localhost:3000/persona/1
+Content-Type: application/json
+
+{
+    "alias": "Facu"
+}
