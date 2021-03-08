@@ -387,6 +387,8 @@ app.put('/libro/:id', async(req, res) => {
 
 
 app.put('/libro/prestar/:id', async(req, res) => {
+
+
     try {
 
         if (!req.body.id_persona) { //
@@ -415,13 +417,13 @@ app.put('/libro/prestar/:id', async(req, res) => {
 
                 console.log("Se prestó correctamente el libro", respuestaprestado.id_persona);
                 res.send({ "Libro devuelto y ID": respuesta }); //muestra si fueron cambiados
+
+
+            } else {
+                throw new Error("El libro ya tiene una persona asignada. Este libro no se puede prestar");
+
+
             }
-
-
-
-        } else {
-
-            throw new Error("El libro ya tiene una persona asignada.");
 
         }
 
