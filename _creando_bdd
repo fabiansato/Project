@@ -1,0 +1,42 @@
+
+// Desarrollo de la logica de negocio
+
+/*
+* Vamos ir arrancando con lo que queremos trabajar
+TRABAJO para todas las conexiones de datos: 
+-Crear la conexion javascript -> mysql
+-Crear las categoriaa usar
+-luego Usaremos los metodos GET; put, post de cada acceso con descripcion:
+-y finalmente crearemos las rutas
+  
+Ejemplo para este caso:
+ 1ero categoria
+ 2do persona
+ 3ero libro
+ 
+ *
+
+ rutas -> /categorias
+POST '/categorias' recibe: {nombre: string} 
+retorna: status: 200, {id: numerico, nombre: string} - status: 413, {mensaje: <descripcion del error>} que puede ser: "faltan datos",
+ "ese nombre de categoriaya existe",
+  "error inesperado"
+
+GET '/categorias' retorna: status 200  y [{id:numerico, nombre:string}]  - status: 413 y []
+
+GET '/categorias/:id' retorna: status 200 y {id: numerico, nombre:string} - status: 413, {mensaje: <descripcion del error>} que puede ser: "error inesperado", "categoriano encontrada"
+
+
+DELETE '/categorias/:id' retorna: status 200 y {mensaje: "se borro correctamente"} - status: 413, {mensaje: <descripcion del error>} que puese ser: "error inesperado", "categoriacon libros asociados, no se puede eliminar", "no existe la categoriaindicada"
+
+
+No se debe implementar el PUT
+ *Productos
+GET para devolver todas las categorias
+
+ Ruta -> /Persona
+
+ *libro
+
+ Ruta -> /libro
+ */

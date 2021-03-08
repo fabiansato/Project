@@ -194,7 +194,7 @@ app.delete('/categoria/:id', async(req, res) => {
 
     try {
         //verifico si no exista un PRODUCTO que tenga esa categoria asociada
-        let query = 'SELECT * FROM producto WHERE categoria_id = ?' // busco un producto donde categoria igual al caregoria_id
+        let query = 'SELECT * FROM producto WHERE id_categoria = ?' // busco un producto donde categoria igual al caregoria_id
         let respuesta = await qy(query, [req.params.id]);
 
         if (respuesta.length > 0) {
@@ -222,14 +222,14 @@ app.delete('/categoria/:id', async(req, res) => {
 
 app.post('/producto', async(req, res) => {
     try {
-        if (!req.body.nombre || !req.body.categoria_id) { //corroborar que si no me mandan un numbre o categoria. no hace falta que pongamos la descripcion total esta va en NULL
+        if (!req.body.nombre || !req.body.id_categoria) { //corroborar que si no me mandan un numbre o categoria. no hace falta que pongamos la descripcion total esta va en NULL
 
             throw new Error("No enviaste los datos obligatorios que son el nombre y la categoria");
         }
         //armamos una 
         let query = 'SELECT * FROM categoria WHERE id = ?';
 
-        let respuesta = await qy(query, [req.body.categoria_id]);
+        let respuesta = await qy(query, [req.body.id_categoria]);
 
         if (respuesta.length == 0) { //si es igual a cero porque no econtró la categoría.
             throw new Error("Esa categoria no existe");
@@ -248,10 +248,10 @@ app.post('/producto', async(req, res) => {
         if (req.body.descripcion) { //como descripcion es un item que no es obligatorio entonces si lo ingresamos guardamos la variable
             descripcion = req.body.descripcion;
         }
-        query = 'INSERT INTO producto (nombre, descripcion, categoria_id) VALUES (?, ?, ?)';
+        query = 'INSERT INTO producto (nombre, descripcion, id_categoria) VALUES (?, ?, ?)';
 
         //mandamos los datos a la bdd
-        respuesta = await qy(query, [req.body.nombre, descripcion, req.body.categoria_id]);
+        respuesta = await qy(query, [req.body.nombre, descripcion, req.body.id_categoria]);
 
         //respuesta para mostrar en psotman
         res.send({ 'respuesta': respuesta });

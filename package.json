@@ -1,24 +1,25 @@
 {
-  "name": "conexion-mysql-postman",
-  "version": "1.0.0",
-  "description": "Para ejemplificar haremos una conexión a una base de datos con una lista de supermercado. Para ello la base de datos tendrán: 1- Productos (tendra: nombre, descripción y cetegoria ) 2- Categoria del producto (ejemplo: lacteos, etc) 3- Listados de lo que compraremos (tendrá: encabecados y lista de productos) 4- en la lista tendremos (id de producto, id de lista y cantidad de productos)",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fabiansato/conexion-mysql-postman.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/fabiansato/conexion-mysql-postman/issues"
-  },
-  "homepage": "https://github.com/fabiansato/conexion-mysql-postman#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "mysql": "^2.18.1"
-  },
-  "devDependencies": {}
+    "name": "conexion-mysql-postman",
+    "version": "1.0.0",
+    "description": "Para ejemplificar haremos una conexión a una base de datos con una lista de supermercado. Para ello la base de datos tendrán: 1- Productos (tendra: nombre, descripción y cetegoria ) 2- Categoria del producto (ejemplo: lacteos, etc) 3- Listados de lo que compraremos (tendrá: encabecados y lista de productos) 4- en la lista tendremos (id de producto, id de lista y cantidad de productos)",
+    "main": "app.js",
+    "scripts": {
+        "start": "src/server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fabiansato/conexion-mysql-postman.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/fabiansato/conexion-mysql-postman/issues"
+    },
+    "homepage": "https://github.com/fabiansato/conexion-mysql-postman#readme",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "mysql": "^2.18.1"
+    },
+    "devDependencies": {}
 }
