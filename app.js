@@ -506,6 +506,57 @@ app.put('/libro/devolver/:id', async(req, res) => {
 });
 
 
+app.delete('/libro/:id', async(req, res) => {
+    try {
+
+        if (!req.body.id_persona) { //
+            throw new Error("No enviaste el ID de la persona");
+        }
+
+        const query = 'SELECT * FROM libros WHERE id = ?';
+
+        const respuesta = await qy(query, [req.params.id]);
+
+        if (respuesta == 0) {
+            throw new Error("No existe ningún libro con esa ID");
+        } else {
+
+            let queryprestado = 'SELECT id_persona FROM libros WHERE id = ?';
+            let respuestaprestado = await qy(queryprestado, [req.params.id]);
+
+            console.log("respuesta prestado:", respuestaprestado[0].id_persona);
+
+
+            if (respuestaprestado[0].id_persona === null) {
+
+                query = 'DELETE FROM libro WHERE id = ?';
+
+
+
+                respuesta = await qy(query, [req.params.id]);
+
+                res.send({ "respuesta": respuesta });
+
+
+            } else {
+                throw new Error("El libro ya tiene una persona asignada. Este libro no se puede eliminar");
+
+
+            }
+
+        }
+
+
+
+    } catch (e) {
+        console.error(e.message);
+        res.status(403).send({
+            "Error inesperado": e.message
+        })
+    }
+});
+
+
 app.listen(port, () => {
     console.log('Servidor escuchando en el puerto', port)
 });
